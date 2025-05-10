@@ -7,8 +7,8 @@ export const Register = async (req,res) => {
   try {
     
     
-    const {email, fullName, phoneNumber, password ,role } = req.body;
-
+    const {fullName,email, phoneNumber, password ,role } = req.body;
+     console.log(email,fullName, phoneNumber, password ,role);
     if (!fullName || !email || !phoneNumber || !password || !role)
       return res.status(400).json({
         message: "Something missing",
