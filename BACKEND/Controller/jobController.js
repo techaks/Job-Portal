@@ -2,6 +2,7 @@ import { Job } from "../MODELS/jobModel.js";
 
 
 
+
 export const PostJob = async (req, res) => {
   try {
     const {
