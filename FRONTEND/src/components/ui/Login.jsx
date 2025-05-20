@@ -4,8 +4,11 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { setUser } from "@/redux/authSlice.js";
 
 const Login = () => {
+  const dispatch = useDispatch();
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     const api = import.meta.env.VITE_user_endpoint;
@@ -18,28 +21,29 @@ const Login = () => {
         e.preventDefault();
        try {
         setLoading(true)
-        const response = await axios.post(`${api}/login`,input)
-        console.log(response);
+        const response = await axios.post(`${api}/login`,input,{
+          withCredentials: true
+        })
+        // console.log(response);
         if(response.data.success){
             setLoading(false)
             toast.success("Login Successfully")
+            console.log(response.data.user);
+             dispatch(setUser(response.data.user))
             navigate('/')}
           
 
-            else if(response.data.success === "false"){
+            else{
                 setLoading(false)
                 toast.error(response.data.message)
                 console.log(response.data.message);
             }
-            else{
-                setLoading(false)
-                toast.error("error")
-            }
+            
             
             
         
        } catch (error) {
-        console.log(error.response.data.message);
+        console.log(error);
         setLoading(false)
         toast.error(error.response.data.message)
         

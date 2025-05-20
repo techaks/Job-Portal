@@ -29,7 +29,7 @@ const userSchema = new mongoose.Schema({
     profile:{
         bio:{type:String,default:""},
         skills:[{type:String}],
-        resume:{type:String},
+        resume:{type:String , default:""},
         profilePhoto:{
             type:String,
             default:""

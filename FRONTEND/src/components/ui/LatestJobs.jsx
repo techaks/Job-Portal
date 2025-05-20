@@ -1,9 +1,11 @@
 import React from 'react'
 import LatestJobCard from './LatestJobCard';
+import { useSelector } from 'react-redux';
 
 const jobs = [1,2,3,4,5,6,7,8,9];
 
 const LatestJobs = () => {
+  const {allJobs} = useSelector(store=>store.job);
   return (
     <div className='w-full ml-10 '>
       <div className='mx-10 mt-10 '>
@@ -11,7 +13,7 @@ const LatestJobs = () => {
         </div>
         <div className=' flex m-5 flex-wrap gap-5  items-center content-center '>
             {
-                jobs.map(()=><LatestJobCard/>)
+               allJobs.length &&  allJobs.map((jobs)=><LatestJobCard key={jobs._id} jobs={jobs}  />)
             }
        
       </div>

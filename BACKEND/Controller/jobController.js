@@ -98,7 +98,9 @@ export const PostJob = async (req, res) => {
 
     try {
         const id = req.params.id;
-        const job = await Job.findById(id);
+        let job = await Job.findById(id).populate({
+          path: 'applications',})
+        
         if(!job) return res.status(404).json({
             message:"Job Not Found",
             success:false

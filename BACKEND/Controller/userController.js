@@ -3,6 +3,10 @@ import bcrypt from 'bcrypt';
 
 import jwt from "jsonwebtoken";
 
+import cloudinary from "../utils/cloudinary.js";
+import {getDataUri} from './../utils/dataUri.js';
+
+
 export const Register = async (req,res) => {
   try {
     
@@ -37,8 +41,6 @@ export const Register = async (req,res) => {
 
 
          })
-
-
 
 
          return res.status(200).json({
@@ -88,14 +90,17 @@ export const Login = async (req,res)=>{
               }
               user = {
                 _id:user._id,
-                fullname:user.fullname,
-                email:user.fullName,
+                fullName:user.fullName,
+                role:user.role,
+                email:user.email,
                 phoneNumber:user.phoneNumber,
                 profile:user.profile
               }
 
-              const token = await jwt.sign(tokenData,process.env.Secret_key)
+              
 
+              const token = await jwt.sign(tokenData,process.env.Secret_key)
+               
               return res.status(200).cookie("token",token).json({
                 success:true,
                 user
@@ -131,10 +136,16 @@ export const UpdateProfile = async(req,res)=>{
    
       
         const {fullName,phoneNumber,bio,skills} = req.body;
+        let resume;
+        if(req.file){
+         resume = getDataUri(req.file);
+        }
+
         
+      
         
         const userId = req.id;
-        console.log(userId);
+        // console.log(userId);
         
 
         let user = await User.findById(userId);
@@ -144,13 +155,22 @@ export const UpdateProfile = async(req,res)=>{
         
         if(phoneNumber)user.phoneNumber = phoneNumber;
          
-         if(bio) user.prifile.bio = bio;
+         if(bio) user.profile.bio = bio;
          
          if(skills){
             let skillsArray = skills.split(',')
             user.profile.skills = skillsArray
          }
-           
+         if(resume){
+         
+          const file=resume;
+          const cloudresponse= await cloudinary.uploader.upload(file.content)
+          console.log(cloudresponse.secure_url);
+          if(cloudresponse){
+            user.profile.resume = cloudresponse.secure_url;
+         }
+         }
+         
 
          await user.save();
 
@@ -161,6 +181,7 @@ export const UpdateProfile = async(req,res)=>{
             phoneNumber: user.phoneNumber,
             role:user.role,
             profile:user.profile,
+            resume: user.profile.resume,
 
          }
 

@@ -2,9 +2,13 @@ import React from "react";
 import FilterCard from "./FilterCard";
 import Navbar from "./Navbar";
 import Job from "./Job";
+import { useSelector } from "react-redux";
 
 const jobs = [1, 2, 3, 4, 5, 6, 7, 8, 9,1, 2, 3, 4, 5, 6, 7, 8, 9];
 const Jobs = () => {
+
+  const {allJobs} = useSelector(store=>store.job)
+
   return (
     <div>
       <Navbar />
@@ -16,8 +20,8 @@ const Jobs = () => {
         </div>
         
         <div className="w-full flex gap-4 flex-wrap ml-[15%] " >
-          {jobs.map((job, index) => (
-            <Job />
+          { allJobs && allJobs.map((job) => (
+            <Job key={job._id} job={job} />
           ))}
         </div>
       </div>

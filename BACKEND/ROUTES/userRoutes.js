@@ -7,10 +7,11 @@ import { upload } from '../Middleware/multer.js';
 
 const router = express.Router();
 
+
 router.route("/login").post(Login); 
 router.route("/register").post(upload,Register);
 router.route("/logout").get(Logout);
-router.route("/update-profile").post(isAuth,UpdateProfile);
+router.route("/update-profile").post(upload,isAuth,UpdateProfile);
 
 
 export default router;
