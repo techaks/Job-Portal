@@ -11,7 +11,7 @@ import cors from "cors";
 
 const app = express(); 
 app.use(cors({
-    origin:"https://job-portal-frontendd.onrender.com/",
+    origin:"https://job-portal-frontendd.onrender.com",
     credentials:true,
 }))
 
