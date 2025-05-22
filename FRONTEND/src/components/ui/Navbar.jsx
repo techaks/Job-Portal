@@ -41,16 +41,7 @@ const Navbar = () => {
           />
           <p className="text-[#00A5EC] font-bold px-2">JOBSY</p>
         </div>
-        <div>
-          <input
-            className=" border-2 border-[#1F8211] outline-none rounded-md px-2"
-            type="text"
-            placeholder="Search Jobs Here"
-          />
-          <button className="bg-blue-400 text-white font-bold rounded-md px-1 cursor-pointer m-1 hover:bg-blue-600">
-            Search
-          </button>
-        </div>
+        
 
         {user?.role === "student" ? (
           <div className="flex items-center gap-3">

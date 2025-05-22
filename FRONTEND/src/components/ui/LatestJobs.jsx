@@ -2,7 +2,7 @@ import React from 'react'
 import LatestJobCard from './LatestJobCard';
 import { useSelector } from 'react-redux';
 
-const jobs = [1,2,3,4,5,6,7,8,9];
+
 
 const LatestJobs = () => {
   const {allJobs} = useSelector(store=>store.job);

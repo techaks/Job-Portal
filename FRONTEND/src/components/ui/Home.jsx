@@ -13,7 +13,7 @@ const {user} = useSelector(store=>store.user)
 
 useEffect(()=>{
   if(user?.role === "recruiter")
-    navigate('/admin/companies')
+    navigate('/admin/companies');
 
 },[])
 

@@ -49,7 +49,7 @@ export const getappliedJobs = async (req, res) => {
     if (!application.length) {
       return res.status(400).json({ message: "no application found" });
     }
-    return res.status(200).json({ message: "application found", application });
+    return res.status(200).json({success:true, message: "application found", application });
   } catch (error) {
     console.log(error);
   }
@@ -67,7 +67,8 @@ export const getApplicants = async (req, res) => {
       return res.status(400).json({ message: "no applicants found" });
     }
 
-    return res.status(200).json({ message: "applicants found", applicants });
+    return res.status(200).json({ message: "applicants found", applicants ,success:true});
+
   } catch (error) {
     console.log(error);
   }
@@ -92,7 +93,7 @@ export const updateApplicationStatus = async (req, res) => {
 
     return res
       .status(200)
-      .json({ message: "status updated successfully", application });
+      .json({success:true, message: "status updated successfully", application });
   } catch (error) {
     console.log(error);
   }

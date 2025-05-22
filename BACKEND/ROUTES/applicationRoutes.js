@@ -8,7 +8,8 @@ const router = express.Router();
 router.route('/applyjob/:id').post(isAuth,applyJob);
 router.route('/appliedjobs').get(isAuth,getappliedJobs);
 router.route('/getapplicants/:id').get(isAuth,getApplicants);
-router.route('/updatestatus/:id').get(isAuth,updateApplicationStatus);
+router.route('/updateStatus/:id').post(isAuth,updateApplicationStatus);
+
 
 
 export default router;
