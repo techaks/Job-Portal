@@ -11,7 +11,7 @@ import cors from "cors";
 
 const app = express(); 
 app.use(cors({
-    origin:"http://localhost:5173",
+    origin:"https://job-portal-frontendd.onrender.com/",
     credentials:true,
 }))
 
@@ -38,7 +38,7 @@ app.listen(PORT,()=>{
     
 })
 
-app.get('/home',(req,res)=>{
-    return res.status(200).json("home");
+app.get('/',(req,res)=>{
+    return res.status(200).json("hi");
     
 })
