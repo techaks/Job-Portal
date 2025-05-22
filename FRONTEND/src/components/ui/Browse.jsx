@@ -25,7 +25,7 @@ const Browse = () => {
         <p className='text-blue-500'>search Results ({
           allJobs.length
         } )</p>
-        <div className='flex flex-wrap ml-10 gap-4'>
+        <div className='flex flex-col md:flex-row flex-wrap md:ml-10 gap-4'>
           {
             allJobs.length == 0 && <p className="text-red-500 font-bold text-xl item-center w-full">NO JOBS FOUND</p>
           }

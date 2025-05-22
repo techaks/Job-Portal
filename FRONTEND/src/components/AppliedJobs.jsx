@@ -13,7 +13,7 @@ const AppliedJobs = () => {
           `${import.meta.env.VITE_appli_endpoint}/appliedjobs`,
           { withCredentials: true }
         );
-        console.log(response.data.application);
+        // console.log(response.data.application);
         if (response.data.success) {
           
           setAppliedJobs(response?.data?.application)

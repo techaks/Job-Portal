@@ -28,7 +28,7 @@ const Login = () => {
         if(response.data.success){
             setLoading(false)
             toast.success("Login Successfully")
-            console.log(response.data.user);
+            // console.log(response.data.user);
              dispatch(setUser(response.data.user))
             navigate('/')}
           
@@ -36,7 +36,7 @@ const Login = () => {
             else{
                 setLoading(false)
                 toast.error(response.data.message)
-                console.log(response.data.message);
+                // console.log(response.data.message);
             }
             
             

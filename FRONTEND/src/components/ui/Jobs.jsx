@@ -17,7 +17,9 @@ const Jobs = () => {
       const filter = allJobs.filter((job)=>{
            return job.title.toLowerCase().includes(query.toLowerCase())  ||
            job.description.toLowerCase().includes(query.toLowerCase()) ||
-           job.location.toLowerCase().includes(query.toLowerCase()) 
+           job.location.toLowerCase().includes(query.toLowerCase()) ||
+           job?.salary?.toString().includes(query) 
+
       })
       setFilterJobs(filter)
 
@@ -36,14 +38,16 @@ const Jobs = () => {
     <div>
       <Navbar />
 
-      <div className="m-10 flex gap-5 ">
-        <div className="w-[15%] flex flex-col fixed ">
+{/* //fixed  15*/}
+
+      <div className=" m-2 md:m-10 flex flex-row gap-5 ">
+        <div className="w-[15%] flex flex-col md:fixed "> 
         <FilterCard />
 
         </div>
         
         
-        <div className="w-full flex gap-4 flex-wrap ml-[15%] " >
+        <div className="w-full flex gap-4 flex-wrap md:ml-[15%] " >
         {
           filterJobs.length == 0 && <p className="text-red-500 font-bold text-xl item-center w-full">NO JOBS FOUND</p>
         }

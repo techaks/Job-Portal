@@ -17,7 +17,7 @@ const Companies = () => {
   );
 
   console.log(filteredCompanies);
-  console.log('filteredCompanies');
+
 
   useEffect(() => {
     const fetch = async () => {

@@ -12,17 +12,17 @@ const filterData = [
   },
   {
     category: "skills",
-    options: ["React", "Node", "Java", "Python", "Mernin", "Django"],
+    options: ["React", "Node", "Java", "Python", "Mern", "Django"],
   },
   {
     category: "Salary",
     options: [
-      "3-5 LPA",
-      "5-8 LPA",
-      "8-10 LPA",
-      "10-15 LPA",
-      "15-20 LPA",
-      "20+ LPA",
+      "3",
+      "5",
+      "10",
+      "15",
+      "20",
+      "50 ",
     ],
   },
 ];
@@ -33,7 +33,6 @@ const FilterCard = () => {
   const valueChanged = (value) => {
     setValue(value);
   
-    
   };
 
   useEffect(() => {
@@ -47,15 +46,15 @@ const FilterCard = () => {
       <div>
         <RadioGroup value={value} onValueChange={valueChanged} > 
           {filterData.map((data, index) => (
-            <div>
-              <h1>{data.category}</h1>
+            <div className="flex flex-col">
+              <h1 className="font-bold text-blue-500">{data.category}</h1>
               {data.options.map((item, index) => {
                 return (
-                  <div>
+                  <div className="flex flex-col md:flex-row md:gap-3 items-center">
                     <RadioGroupItem
                       value={item}
                       id={item}
-                      className="cursor-pointer"
+                      className="cursor-pointer border-2 border-green-500"
                     />
                     <label htmlFor="">{item}</label>
                   </div>

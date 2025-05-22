@@ -16,6 +16,7 @@ const SignUp = () => {
     password: "",
     role: "student",
     file: "",
+    passcode:""
   });
 
   //    const changeHandler =(e)=>{
@@ -37,12 +38,13 @@ const SignUp = () => {
     formData.append("email", input.email);
     formData.append("password", input.password);
     formData.append("role", input.role);
+    formData.append("passcode",input.passcode)
     if (input.file) {
       formData.append("file", input.file);
     }
     try {
-      console.log(formData);
-      console.log(input);
+      // console.log(formData);
+      // console.log(input);
          setLoading(true)
       const response = await axios.post(`${api}/register`, formData, {
         headers: {
@@ -50,7 +52,7 @@ const SignUp = () => {
         },
         withCredentials: true,
       });
-      console.log(response);
+      // console.log(response);
       if (response.data.success) {
         setLoading(false)
         toast.success("User Created Successfully");
@@ -63,7 +65,7 @@ const SignUp = () => {
     } catch (error) {
         setLoading(false)
       toast.error(error.response.data.message);
-      console.log(error.response.data.message);
+      // console.log(error.response.data.message);
     }
   };
 
@@ -99,7 +101,7 @@ const SignUp = () => {
             onChange={(e) => {
               setInput({ ...input, [e.target.name]: e.target.value });
             }}
-            placeholder="Enter your full name"
+            placeholder="Enter your Phonenumber"
             className="no-spinner border-2 border-blue-500 outline-none rounded-md px-2"
           />
           <label className="font-bold" htmlFor="name">
@@ -130,7 +132,8 @@ const SignUp = () => {
             placeholder="Enter secure password"
             className="border-2 border-blue-500 outline-none rounded-md px-2"
           />
-          <RadioGroup defaultValue={input.role}>
+          <RadioGroup className="flex" defaultValue={input.role}>
+
             <div className="flex items-center space-x-2">
               <label htmlFor="student">Student</label>
               <input
@@ -156,6 +159,19 @@ const SignUp = () => {
               />
             </div>
           </RadioGroup>
+
+          <div className="flex">
+            <p className="text-red-500">passcode need for recruiter </p>
+            <input
+             name="passcode"
+             id="passcode"
+             value={input.passcode}
+             onChange={(e) => {
+               setInput({ ...input, [e.target.name]: e.target.value });
+             }}
+             className="w-20 border-2 px-2 rounded-md " type="text"
+            placeholder="passcode" />
+          </div>
           <label
             className="bg-amber-200 w-fit rounded-md font-bold cursor-pointer hover:bg-amber-100"
             htmlFor="file"

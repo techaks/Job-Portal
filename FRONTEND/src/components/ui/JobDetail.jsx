@@ -20,7 +20,7 @@ const JobDetail = () => {
   const url = import.meta.env.VITE_job_endpoint;
   const applyUrl = import.meta.env.VITE_appli_endpoint;
 
-  console.log(singleJob);
+  // console.log(singleJob);
 
   const isApplied =
     user?._id &&
@@ -28,9 +28,9 @@ const JobDetail = () => {
     singleJob.applications.some(
       (application) => application?.applicant === user._id
     );
-  console.log(isApplied);
+  // console.log(isApplied);
 
-  console.log(user?._id);
+  // console.log(user?._id);
 
   useEffect(() => {
     const getJobDetail = async () => {
@@ -38,7 +38,7 @@ const JobDetail = () => {
         const response = await axios.get(`${url}/jobbyid/${jobId}`, {
           withCredentials: true,
         });
-        console.log(response.data.job);
+        // console.log(response.data.job);
         if (response.data.success) {
           dispatch(setSingleJob(response.data.job));
         }
@@ -51,9 +51,9 @@ const JobDetail = () => {
   }, [dispatch, jobId, user?._id]);
 
   const applyJob = async () => {
-    console.log("log")
+    
     try {
-        console.log("try");
+      
       setloading(true);
       const response = await axios.post(`${applyUrl}/applyjob/${jobId}`,{}, 
         {

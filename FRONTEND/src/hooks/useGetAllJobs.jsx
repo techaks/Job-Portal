@@ -9,7 +9,7 @@ const useGetAllJobs = () => {
   const dispatch = useDispatch();
   const { query } = useSelector((store) => store.job);
 
-  console.log(query);
+  // console.log(query);
 
   useEffect(() => {
     const getAllJobs = async () => {
@@ -17,7 +17,7 @@ const useGetAllJobs = () => {
         const response = await axios.get(`${url}/alljobs?keyword=${query}`, {
           withCredentials: true,
         });
-        console.log(response.data.success);
+        // console.log(response.data.success);
         if (response.data.success) {
           dispatch(setAllJobs(response.data.jobs));
         }

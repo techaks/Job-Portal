@@ -28,7 +28,7 @@ const UpdateProfile = ({ open, setOpen }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(input);
+    // console.log(input);
 
     try {
       const formData = new FormData();
@@ -45,7 +45,7 @@ const UpdateProfile = ({ open, setOpen }) => {
         { withCredentials: true }
       );
 
-      console.log(response);
+      // console.log(response);
       if (response.data.success) {
         dispatch(setUser(response.data.user));
         setLoading(false);

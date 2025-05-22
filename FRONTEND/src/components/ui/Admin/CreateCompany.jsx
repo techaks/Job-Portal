@@ -23,7 +23,7 @@ const CreateCompany = () => {
         const response = await axios.post(`${apiUrl}/register`,{name},{
             withCredentials:true
         })
-         console.log(response);
+        //  console.log(response);
         if(response.data.success){
             toast.success(response.data.message);
             dispatch(setSingleCompany(response.data.company));

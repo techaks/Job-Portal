@@ -27,8 +27,8 @@ const AdminJobs = () => {
     return titleMatch || companyMatch;
   });
 
-  console.log(filteredJobs);
-  console.log('filteredjobs');
+  // console.log(filteredJobs);
+  
 
   useEffect(() => {
     const fetch = async () => {

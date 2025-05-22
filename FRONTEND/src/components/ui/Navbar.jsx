@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { setUser } from "@/redux/authSlice";
+import { setAdminJobs, setAllJobs, setSingleJob } from "@/redux/jobSlice";
+import { setCompanies, setSingleCompany } from "@/redux/companySlice";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -18,11 +20,16 @@ const Navbar = () => {
       const res = await axios.get(
         `${import.meta.env.VITE_user_endpoint}/logout`
       );
-      console.log(res);
+      // console.log(res);
       if (res.data.success) {
         toast.success(res.data.message);
         navigate("/login");
         dispatch(setUser(null));
+        dispatch(setAllJobs([]));
+        dispatch(setSingleJob(null))
+        dispatch(setAdminJobs([]));
+        dispatch(setCompanies([]))
+        dispatch(setSingleCompany(null))
       }
     } catch (error) {
       console.log(error);
@@ -31,7 +38,7 @@ const Navbar = () => {
 
   return (
     <div>
-      <div className="flex justify-between items-center border-b-2  px-8 mx-4 ">
+      <div className="flex justify-between items-center border-b-2  md:px-8 mx-4 ">
         <div className="flex items-center">
           <img
             onClick={() => navigate("/")}
@@ -39,12 +46,12 @@ const Navbar = () => {
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKQWcA-aoPsU-drPn8HcbWlGrZZhua5v-08w&s"
             alt="logo"
           />
-          <p className="text-[#00A5EC] font-bold px-2">JOBSY</p>
+          <p className="text-[#00A5EC] font-bold md:px-2">JOBSY</p>
         </div>
         
 
         {user?.role === "student" ? (
-          <div className="flex items-center gap-3">
+          <div className="flex gap-1 items-center md:gap-3">
             <p
               onClick={() => navigate("/")}
               className="text-[#FF8C00] font-bold cursor-pointer"
@@ -68,8 +75,8 @@ const Navbar = () => {
               <Popover>
                 <PopoverTrigger aschild>
                   <img
-                    className="cursor-pointer w-9 h-9 "
-                    src="https://cdn.apna.co/apna-learn/Support%20Icons/aicte-seeklogo.png"
+                    className="cursor-pointer w-9 h-9 rounded-full "
+                    src={`${user?.profile?.profilePhoto ? user.profile.profilePhoto :"https://cdn.apna.co/apna-learn/Support%20Icons/aicte-seeklogo.png"}`}
                     alt="logo"
                   />
                 </PopoverTrigger>
@@ -124,13 +131,14 @@ const Navbar = () => {
             )}
           </div>
         ) : (
-          <div className="flex items-center gap-3">
+          <div className="flex gap-1 items-center md:gap-3">
             <p
               onClick={() => navigate("/admin/jobs")}
               className="text-[#FF8C00] font-bold cursor-pointer"
             >
               Jobs
             </p>
+            
             <p
               onClick={() => navigate("/admin/companies")}
               className="text-[#FF8C00] font-bold cursor-pointer"
@@ -142,9 +150,9 @@ const Navbar = () => {
             {user ? (
               <Popover>
                 <PopoverTrigger aschild>
-                  <img
-                    className="cursor-pointer w-9 h-9 "
-                    src="https://cdn.apna.co/apna-learn/Support%20Icons/aicte-seeklogo.png"
+                <img
+                    className="cursor-pointer w-9 h-9 rounded-full "
+                    src={`${user?.profile?.profilePhoto ? user.profile.profilePhoto :"https://cdn.apna.co/apna-learn/Support%20Icons/aicte-seeklogo.png"}`}
                     alt="logo"
                   />
                 </PopoverTrigger>

@@ -11,9 +11,16 @@ export const Register = async (req,res) => {
   try {
     
     
-    const {fullName,email, phoneNumber, password ,role } = req.body;
-     console.log(email,fullName, phoneNumber, password ,role);
+    const {fullName,email, phoneNumber, password ,role,passcode } = req.body;
+    //  console.log(email,fullName, phoneNumber, password ,role,passcode);
 
+      if(role === "recruiter" && (passcode !== "85390" && passcode !== "bahubali")){
+        return res.status(400).json({
+          message: "passcode different",
+          sucess: false,
+        });
+       }
+       
      let avtar;
      if(req.file){
       avtar = getDataUri(req.file);
@@ -41,7 +48,7 @@ export const Register = async (req,res) => {
          
           const file = avtar;
           const cloudresponse= await cloudinary.uploader.upload(file.content)
-          console.log(cloudresponse.secure_url);
+          // console.log(cloudresponse.secure_url);
           
            url = cloudresponse.secure_url;
           
@@ -64,7 +71,7 @@ export const Register = async (req,res) => {
 
 
          return res.status(200).json({
-            message:"regester successfully",
+            message:"register successfully",
             success:true,
             user
          })
@@ -186,7 +193,7 @@ export const UpdateProfile = async(req,res)=>{
          
           const file=resume;
           const cloudresponse= await cloudinary.uploader.upload(file.content)
-          console.log(cloudresponse.secure_url);
+          // console.log(cloudresponse.secure_url);
           if(cloudresponse){
             user.profile.resume = cloudresponse.secure_url;
          }

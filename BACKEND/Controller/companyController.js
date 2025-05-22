@@ -38,6 +38,7 @@ export const RegisterCompany = async (req, res) => {
 export const GetCompany = async (req, res) => {
   try {
     const userId = req.id;
+    // console.log(userId);
 
     let companies = await Company.find({ userId });
 
@@ -91,7 +92,7 @@ export const UpdateCompany = async (req, res) => {
       const logo = (await cloudinary.uploader.upload(url)).secure_url
       updateData.logo = logo;
     }
-    console.log(updateData);
+    // console.log(updateData);
     const company = await Company.findByIdAndUpdate(req.params.id, updateData, {
       new: true,
     });

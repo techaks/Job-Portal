@@ -28,14 +28,12 @@ const Job = ({job}) => {
   
 
   return (
-    <div className="w-[30%] shadow-xl p-4 rounded-md">
+    <div className=" md:w-[30%] shadow-xl border-2 p-4 rounded-md">
       <div>
         <div className="flex content-center justify-between">
           <p className="font-bold"> {`${day ? `${day} days ago` : "Today "} `}  </p>
 
-          <p className="cursor-pointer hover:bg-gray-200 rounded-full ">
-            <Bookmark />
-          </p>
+          
         </div>
 
         <div className="flex gap-2 mt-2">
@@ -65,8 +63,8 @@ const Job = ({job}) => {
                     Detail
                 </Button>
                       
-                <Button variant={"ghost"} className="cursor-pointer bg-[#ff9a00] font-bold mt-2 rounded-md px-4 py-2">
-                    Save Job
+                <Button onClick={()=>navigate('/')} variant={"ghost"} className="cursor-pointer bg-[#ff9a00] font-bold mt-2 rounded-md px-4 py-2">
+                    Home
                 </Button>
             </div>
 

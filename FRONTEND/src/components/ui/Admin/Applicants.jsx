@@ -19,9 +19,9 @@ const Applicants = () => {
         });
 
         if (response.data.success) {
-          console.log(response.data.applicants.applications);
+          // console.log(response.data.applicants.applications);
           setApplicants(response.data.applicants.applications);
-          console.log(applicants);
+          // console.log(applicants);
         }
       } catch (error) {
         console.log(error);
@@ -38,8 +38,8 @@ const Applicants = () => {
             withCredentials:true
         });
        
-        console.log(response)
-        console.log(url)
+        // console.log(response)
+        // console.log(url)
          if(response?.data?.success){
 
             toast.success("Status Updated");

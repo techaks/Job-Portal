@@ -43,13 +43,13 @@ const AdminCreateJob = () => {
 
 
   const createJob = async () => {
-    console.log(input);
+    // console.log(input);
     try {
         setLoading(true)
       const response = await axios.post(`${url}/post`, input, {
         withCredentials: true,
       });
-      console.log(response);
+      // console.log(response);
       if (response.data.success) {
         toast.success(response.data.message);
         navigate('/admin/jobs');

@@ -15,14 +15,14 @@ export const PostJob = async (req, res) => {
       companyId,
     } = req.body;
 
-    console.log(title,
-      description,
-      requiremenets,
-      salary,
-      location,
-      jobType,
-      position,
-      companyId)
+    // console.log(title,
+    //   description,
+    //   requiremenets,
+    //   salary,
+    //   location,
+    //   jobType,
+    //   position,
+    //   companyId)
 
 
     const userId = req.id;
