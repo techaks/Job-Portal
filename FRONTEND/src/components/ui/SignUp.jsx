@@ -54,6 +54,7 @@ const SignUp = () => {
       if (response.data.success) {
         setLoading(false)
         toast.success("User Created Successfully");
+        navigate("/login");
         
       } else {
         setLoading(false)

@@ -65,6 +65,7 @@ export const PostJob = async (req, res) => {
   }
 };
 
+
 export const GetAllJob = async (req, res) => {
   try {
     const keyword = req.query.keyword || "";

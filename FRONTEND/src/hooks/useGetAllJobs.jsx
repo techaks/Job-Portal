@@ -1,36 +1,39 @@
-import { setAllJobs } from '@/redux/jobSlice';
-import axios from 'axios'
-import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux';
+import { setAllJobs } from "@/redux/jobSlice";
+import axios from "axios";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 const useGetAllJobs = () => {
-    const url  = import.meta.env.VITE_job_endpoint;
-    const dispatch = useDispatch();
+  const url = import.meta.env.VITE_job_endpoint;
+  const dispatch = useDispatch();
+  const { query } = useSelector((store) => store.job);
 
-    useEffect(()=>{
-        const getAllJobs = async () => {
-           try {
-            const response = await axios.get(`${url}/alljobs`,{
-                withCredentials:true,
-            })
-            console.log(response.data.jobs);
-            if(response.data.success){
-                dispatch(setAllJobs(response.data.jobs))
-            }
-            
-           } catch (error) {
-            console.log(error);
-            
-           }
-                // setJobs(response.data.jobs)
-            
-          
+  console.log(query);
+
+  useEffect(() => {
+    const getAllJobs = async () => {
+      try {
+        const response = await axios.get(`${url}/alljobs?keyword=${query}`, {
+          withCredentials: true,
+        });
+        console.log(response.data.success);
+        if (response.data.success) {
+          dispatch(setAllJobs(response.data.jobs));
         }
-getAllJobs();
+      } catch (error) {
+        console.log(error);
+        // toast.error(error.response.data.message);
 
-    },[dispatch])
- 
+        if (!error.response.data.success) {
+          dispatch(setAllJobs([]));
+        }
+      }
 
-}
+      // setJobs(response.data.jobs)
+    };
+    getAllJobs();
+  }, [dispatch, query]);
+};
 
-export default useGetAllJobs
+export default useGetAllJobs;

@@ -1,13 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import FilterCard from "./FilterCard";
 import Navbar from "./Navbar";
 import Job from "./Job";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setQuery } from "@/redux/jobSlice";
 
-const jobs = [1, 2, 3, 4, 5, 6, 7, 8, 9,1, 2, 3, 4, 5, 6, 7, 8, 9];
+
 const Jobs = () => {
 
-  const {allJobs} = useSelector(store=>store.job)
+  const {allJobs,query} = useSelector(store=>store.job);
+  const [filterJobs,setFilterJobs] = useState(allJobs)
+  const dispatch = useDispatch()
+  
+  useEffect(()=>{
+    if(query){
+      const filter = allJobs.filter((job)=>{
+           return job.title.toLowerCase().includes(query.toLowerCase())  ||
+           job.description.toLowerCase().includes(query.toLowerCase()) ||
+           job.location.toLowerCase().includes(query.toLowerCase()) 
+      })
+      setFilterJobs(filter)
+
+    }else{
+      setFilterJobs(allJobs)
+    }
+
+
+  },[allJobs,query])
+
+ useEffect(() => {
+    return () => dispatch(setQuery(""));
+  }, []);
 
   return (
     <div>
@@ -19,8 +42,12 @@ const Jobs = () => {
 
         </div>
         
+        
         <div className="w-full flex gap-4 flex-wrap ml-[15%] " >
-          { allJobs && allJobs.map((job) => (
+        {
+          filterJobs.length == 0 && <p className="text-red-500 font-bold text-xl item-center w-full">NO JOBS FOUND</p>
+        }
+          { filterJobs && filterJobs.map((job) => (
             <Job key={job._id} job={job} />
           ))}
         </div>

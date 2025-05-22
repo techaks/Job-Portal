@@ -12,7 +12,7 @@ const JobDetail = () => {
   const params = useParams();
   const jobId = params.id;
   //   console.log(jobId)
-  console.log("kb");
+ 
 
   const dispatch = useDispatch();
 

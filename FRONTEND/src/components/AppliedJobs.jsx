@@ -41,8 +41,8 @@ const AppliedJobs = () => {
           className="grid grid-cols-4 gap-4 p-2 mt-2 font-medium"
         >
           <p>{job.createdAt.split("T")[0]}</p>
-          <p>{job.job.title}</p>
-          <p>{job.job.company.name}</p>
+          <p>{job?.job?.title}</p>
+          <p>{job.job?.company?.name}</p>
 
           <p
             className={`px-2 py-1 rounded text-white text-center ${

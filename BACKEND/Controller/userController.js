@@ -13,6 +13,11 @@ export const Register = async (req,res) => {
     
     const {fullName,email, phoneNumber, password ,role } = req.body;
      console.log(email,fullName, phoneNumber, password ,role);
+
+     let avtar;
+     if(req.file){
+      avtar = getDataUri(req.file);
+     }
     if (!fullName || !email || !phoneNumber || !password || !role)
       return res.status(400).json({
         message: "Something missing",
@@ -31,6 +36,17 @@ export const Register = async (req,res) => {
         
 
         const hashedPassword = await bcrypt.hash(password,10);
+        let url ;
+        if(avtar){
+         
+          const file = avtar;
+          const cloudresponse= await cloudinary.uploader.upload(file.content)
+          console.log(cloudresponse.secure_url);
+          
+           url = cloudresponse.secure_url;
+          
+          
+         }
         
          await User.create({
             fullName,
@@ -38,6 +54,10 @@ export const Register = async (req,res) => {
             password:hashedPassword,
             phoneNumber,
             role,
+            profile:{
+              profilePhoto:url
+
+            }
 
 
          })
@@ -46,6 +66,7 @@ export const Register = async (req,res) => {
          return res.status(200).json({
             message:"regester successfully",
             success:true,
+            user
          })
 
 

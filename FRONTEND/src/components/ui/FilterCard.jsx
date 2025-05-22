@@ -1,6 +1,9 @@
 import { RadioGroup } from "@radix-ui/react-radio-group";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { RadioGroupItem } from "./radio-group";
+import { useDispatch } from "react-redux";
+import { setQuery } from "@/redux/jobSlice";
+import useGetAllJobs from "@/hooks/useGetAllJobs";
 
 const filterData = [
   {
@@ -25,27 +28,42 @@ const filterData = [
 ];
 
 const FilterCard = () => {
+  const [value, setValue] = useState("");
+  const dispatch = useDispatch();
+  const valueChanged = (value) => {
+    setValue(value);
+  
+    
+  };
+
+  useEffect(() => {
+   dispatch(setQuery(value))
+    
+  }, [value]);
+
   return (
     <div>
       <p className="font-bold text-xl ">Filter</p>
       <div>
-        {filterData.map((item, index) => (
-          <div>
-            <p className="text-[#FF9A00] font-bold">{item.category}</p>
-
-            <RadioGroup>
-              {item.options.map((option, index) => (
-                <div className="flex gap-2 items-center " key={index}>
-                  <RadioGroupItem key={index} value={option} id={option}>
-                  </RadioGroupItem>
-                    <label id={option} htmlFor={option} className="text-[#155DFC] font-bold cursor-pointer">{option}</label>
-                   
-                  
-                </div>
-              ))}
-            </RadioGroup>
-          </div>
-        ))}
+        <RadioGroup value={value} onValueChange={valueChanged} > 
+          {filterData.map((data, index) => (
+            <div>
+              <h1>{data.category}</h1>
+              {data.options.map((item, index) => {
+                return (
+                  <div>
+                    <RadioGroupItem
+                      value={item}
+                      id={item}
+                      className="cursor-pointer"
+                    />
+                    <label htmlFor="">{item}</label>
+                  </div>
+                );
+              })}
+            </div>
+          ))}
+        </RadioGroup>
       </div>
     </div>
   );
