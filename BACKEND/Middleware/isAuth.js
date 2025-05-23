@@ -8,7 +8,7 @@ const isAuth = async (req,res,next)=>{
         // const token = req.cookies.token;
 
         const authHeader = req.headers.authorization;
-        if(!authHeader || !authHeader.startWith("Bearer")){
+        if(!authHeader || !authHeader.startsWith("Bearer")){
             return res.status(400).json({
                 message:"not authentic",
                 success:false,
