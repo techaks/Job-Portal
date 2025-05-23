@@ -20,7 +20,7 @@ useEffect(()=>{
 
 useEffect(()=>{
   if(!user){
-    alert("kjnv")
+    console.log("no user")
     navigate('/login');
   }
 

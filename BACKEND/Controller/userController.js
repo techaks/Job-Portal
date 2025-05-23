@@ -129,7 +129,11 @@ export const Login = async (req,res)=>{
 
               const token = await jwt.sign(tokenData,process.env.Secret_key)
                
-              return res.status(200).cookie("token",token).json({
+              return res.status(200).cookie("token",token,{
+                httpOnly:true,
+                secure:true,
+                sameSite:"None"
+              }).json({
                 success:true,
                 user
 
