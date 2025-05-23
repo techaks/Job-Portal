@@ -12,6 +12,10 @@ const LatestJobs = () => {
         <p className='text-2xl ml-14 font-bold text-[#155DFC]'>Latest & Top Jobs For You...</p>
         </div>
         <div className=' flex flex-col md:flex-row  m-5 flex-wrap gap-5 justify-center  '>
+
+          {
+            allJobs.length < 1 && <div className='loader2'></div> 
+          }
             {
                allJobs.length &&  allJobs.map((jobs)=><LatestJobCard key={jobs._id} jobs={jobs}  />)
             }

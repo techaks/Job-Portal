@@ -16,7 +16,7 @@ const Companies = () => {
     company.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  console.log(filteredCompanies);
+  // console.log(filteredCompanies);
 
 
   useEffect(() => {
@@ -30,7 +30,7 @@ const Companies = () => {
            }
         });
 
-        console.log(res);
+        // console.log(res);
         if (res.data.success) {
           dispatch(setCompanies(res.data.companies));
         }
