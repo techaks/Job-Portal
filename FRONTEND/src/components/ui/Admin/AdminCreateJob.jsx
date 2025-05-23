@@ -45,9 +45,13 @@ const AdminCreateJob = () => {
   const createJob = async () => {
     // console.log(input);
     try {
-        setLoading(true)
+        
+        setLoading(true);
+        const token = localStorage.getItem("token");
       const response = await axios.post(`${url}/post`, input, {
-        withCredentials: true,
+        headers:{
+          Authorization:`Bearer ${token}`
+         }
       });
       // console.log(response);
       if (response.data.success) {

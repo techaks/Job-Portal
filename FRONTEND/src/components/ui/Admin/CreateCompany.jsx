@@ -18,10 +18,12 @@ const CreateCompany = () => {
     
     try {
         setLoading(true)
-     
+        const token = localStorage.getItem("token")
         const apiUrl = import.meta.env.VITE_company_endpoint;
         const response = await axios.post(`${apiUrl}/register`,{name},{
-            withCredentials:true
+          headers:{
+            Authorization:`Bearer ${token}`
+           }
         })
         //  console.log(response);
         if(response.data.success){

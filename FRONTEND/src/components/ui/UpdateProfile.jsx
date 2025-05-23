@@ -38,11 +38,15 @@ const UpdateProfile = ({ open, setOpen }) => {
       formData.append("skills", input.skills);
       formData.append("phoneNumber", input.phoneNumber);
       formData.append("file", input.resume);
+      
+      const token = localStorage.getItem("token")
 
       const response = await axios.post(
         `${import.meta.env.VITE_user_endpoint}/update-profile`,
         formData,
-        { withCredentials: true }
+        {  headers:{
+          Authorization:`Bearer ${token}`
+         } }
       );
 
       // console.log(response);

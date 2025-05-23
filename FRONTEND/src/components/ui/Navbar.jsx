@@ -30,6 +30,7 @@ const Navbar = () => {
         dispatch(setAdminJobs([]));
         dispatch(setCompanies([]))
         dispatch(setSingleCompany(null))
+        localStorage.removeItem("token")
       }
     } catch (error) {
       console.log(error);

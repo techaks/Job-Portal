@@ -14,8 +14,11 @@ const useGetAllJobs = () => {
   useEffect(() => {
     const getAllJobs = async () => {
       try {
+        const token = localStorage.getItem("token");
         const response = await axios.get(`${url}/alljobs?keyword=${query}`, {
-          withCredentials: true,
+         headers:{
+          Authorization:`Bearer ${token}`
+         }
         });
         // console.log(response.data.success);
         if (response.data.success) {

@@ -67,9 +67,11 @@ const CompanyEdit = () => {
       //   console.log(formdata);
       setLoading(true);
       const url = import.meta.env.VITE_company_endpoint;
-
+      const token = localStorage.getItem("token")
       const res = await axios.put(`${url}/update/${id}`, formdata, {
-        withCredentials: true,
+        headers:{
+          Authorization:`Bearer ${token}`
+         }
       });
 
       // console.log(res);

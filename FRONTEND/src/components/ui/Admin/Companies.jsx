@@ -22,9 +22,12 @@ const Companies = () => {
   useEffect(() => {
     const fetch = async () => {
       try {
+        const token = localStorage.getItem("token");
         const url = import.meta.env.VITE_company_endpoint;
         const res = await axios.get(`${url}/get`, {
-          withCredentials: true,
+          headers:{
+            Authorization:`Bearer ${token}`
+           }
         });
 
         console.log(res);

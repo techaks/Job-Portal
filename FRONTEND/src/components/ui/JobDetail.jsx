@@ -35,8 +35,11 @@ const JobDetail = () => {
   useEffect(() => {
     const getJobDetail = async () => {
       try {
+        const token = localStorage.getItem("token")
         const response = await axios.get(`${url}/jobbyid/${jobId}`, {
-          withCredentials: true,
+          headers:{
+            Authorization:`Bearer ${token}`
+           }
         });
         // console.log(response.data.job);
         if (response.data.success) {

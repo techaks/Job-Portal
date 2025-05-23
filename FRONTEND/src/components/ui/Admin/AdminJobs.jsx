@@ -33,9 +33,12 @@ const AdminJobs = () => {
   useEffect(() => {
     const fetch = async () => {
       try {
+        const token = localStorage.getItem("token")
         const url = import.meta.env.VITE_job_endpoint;
         const res = await axios.get(`${url}/adminjob`, {
-          withCredentials: true,
+          headers:{
+            Authorization:`Bearer ${token}`
+           }
         });
         dispatch(setAdminJobs(res?.data.jobs))
 

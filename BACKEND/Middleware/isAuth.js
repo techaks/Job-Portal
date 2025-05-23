@@ -5,8 +5,17 @@ import jwt from 'jsonwebtoken';
 const isAuth = async (req,res,next)=>{
 
     try {
-        const token = req.cookies.token;
-        // console.log(token);
+        // const token = req.cookies.token;
+
+        const authHeader = req.headers.authorization;
+        if(!authHeader || !authHeader.startWith("Bearer")){
+            return res.status(400).json({
+                message:"not authentic",
+                success:false,
+            })
+        }
+        const token = authHeader.split(" ")[1];
+        
         if(!token){
             return res.status(400).json({
                 message:"not authentic",

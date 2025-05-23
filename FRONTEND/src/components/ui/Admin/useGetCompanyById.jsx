@@ -9,9 +9,12 @@ const useGetCompanyById = async (id) => {
   useEffect(() => {
     const Fetch = async() => {
         try {
+          const token = localStorage.getItem("token")
           const url = import.meta.env.VITE_company_endpoint;
           const response = await axios.get(`${url}/get/${id}`, {
-            withCredentials: true,
+            headers:{
+              Authorization:`Bearer ${token}`
+             }
           });
           // console.log(response);
           if (response?.data?.success) {

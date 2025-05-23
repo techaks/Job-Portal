@@ -14,8 +14,11 @@ const Applicants = () => {
   useEffect(() => {
     const fetchApplicants = async () => {
       try {
+        const token = localStorage.getItem("token");
         const response = await axios.get(`${url}/getapplicants/${id}`, {
-          withCredentials: true,
+          headers:{
+            Authorization:`Bearer ${token}`
+           }
         });
 
         if (response.data.success) {
