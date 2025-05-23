@@ -28,8 +28,8 @@ const Login = () => {
             setLoading(false)
             toast.success("Login Successfully")
             // console.log(response.data.user);
-             dispatch(setUser(response.data.user))
-             localStorage.setItem("token",res.data.token);
+             dispatch(setUser(response.data?.user))
+             localStorage.setItem("token",response.data?.token);
 
              navigate('/')}
           
