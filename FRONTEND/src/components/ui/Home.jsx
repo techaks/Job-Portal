@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
 const navigate = useNavigate();
-const {user} = useSelector(store=>store.user)
+const {user} = useSelector(store=>store.user);
 
 useEffect(()=>{
   if(user?.role === "recruiter")
@@ -17,8 +17,10 @@ useEffect(()=>{
 
 },[])
 
+
 useEffect(()=>{
   if(!user){
+    alert("kjnv")
     navigate('/login');
   }
 
