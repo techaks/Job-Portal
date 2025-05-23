@@ -49,7 +49,7 @@ const UpdateProfile = ({ open, setOpen }) => {
          } }
       );
 
-      // console.log(response);
+      console.log("response");
       if (response.data.success) {
         dispatch(setUser(response.data.user));
         setLoading(false);
