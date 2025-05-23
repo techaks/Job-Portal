@@ -23,7 +23,7 @@ const Login = () => {
         setLoading(true)
        
         const response = await axios.post(`${api}/login`,input )
-        // console.log(response);
+        console.log(response);
         if(response.data.success){
             setLoading(false)
             toast.success("Login Successfully")

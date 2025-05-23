@@ -106,6 +106,8 @@ export const Login = async (req, res) => {
 
     const token = await jwt.sign(tokenData, process.env.Secret_key);
 
+    
+
     user = {
       _id: user._id,
       fullName: user.fullName,
@@ -117,7 +119,7 @@ export const Login = async (req, res) => {
    
 
     
-  
+
     return res
       .status(200).json({
         success: true,
