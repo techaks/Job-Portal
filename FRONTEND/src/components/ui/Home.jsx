@@ -17,6 +17,13 @@ useEffect(()=>{
 
 },[])
 
+useEffect(()=>{
+  if(!user){
+    navigate('/login');
+  }
+
+},[])
+
 
   useGetAllJobs();
 
