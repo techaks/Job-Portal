@@ -26,8 +26,7 @@ const UpdateProfile = ({ open, setOpen }) => {
   });
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-
+    
     // console.log(input);
 
     try {
@@ -75,7 +74,7 @@ const UpdateProfile = ({ open, setOpen }) => {
             <DialogTitle>Update Your Profile</DialogTitle>
           </DialogHeader>
 
-          <form >
+        
             <div className="grid gap-2 py-2">
               <div className="grid grid-cols-4 items-center gap-2  ">
                 <p className="font-bold ">Name</p>
@@ -156,7 +155,7 @@ const UpdateProfile = ({ open, setOpen }) => {
                 UPDATE
               </button>
             </DialogFooter>
-          </form>
+         
         </DialogContent>
       </Dialog>
     </div>
