@@ -11,7 +11,9 @@ const AppliedJobs = () => {
       try {
         const response = await axios.get(
           `${import.meta.env.VITE_appli_endpoint}/appliedjobs`,
-          { withCredentials: true }
+          {headers:{
+            Authorization:`Bearer ${token}`
+           } }
         );
         // console.log(response.data.application);
         if (response.data.success) {

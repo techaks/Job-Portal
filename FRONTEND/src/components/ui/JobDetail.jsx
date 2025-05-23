@@ -58,9 +58,12 @@ const JobDetail = () => {
     try {
       
       setloading(true);
+      const token = localStorage.getItem("token");
       const response = await axios.post(`${applyUrl}/applyjob/${jobId}`,{}, 
         {
-          withCredentials: true, 
+          headers:{
+            Authorization:`Bearer ${token}`
+           }
         }
       );
       
@@ -69,8 +72,11 @@ const JobDetail = () => {
       if (response) {
        
         toast.success(response.data.message);
+        const token = localStorage.getItem("token");
         const jobRes = await axios.get(`${url}/jobbyid/${jobId}`, {
-            withCredentials: true,
+          headers:{
+            Authorization:`Bearer ${token}`
+           }
           });
           dispatch(setSingleJob(jobRes.data.job));
       }

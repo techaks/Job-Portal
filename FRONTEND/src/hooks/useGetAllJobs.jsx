@@ -15,6 +15,7 @@ const useGetAllJobs = () => {
     const getAllJobs = async () => {
       try {
         const token = localStorage.getItem("token");
+        console.log(token)
         const response = await axios.get(`${url}/alljobs?keyword=${query}`, {
          headers:{
           Authorization:`Bearer ${token}`

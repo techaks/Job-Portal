@@ -21,9 +21,8 @@ const Login = () => {
         e.preventDefault();
        try {
         setLoading(true)
-        const response = await axios.post(`${api}/login`,input,{
-          withCredentials: true
-        })
+       
+        const response = await axios.post(`${api}/login`,input )
         // console.log(response);
         if(response.data.success){
             setLoading(false)

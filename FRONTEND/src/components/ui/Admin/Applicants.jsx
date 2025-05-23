@@ -36,9 +36,11 @@ const Applicants = () => {
 
   const updateStatus = async(status,id)=>{
     try {
-       
+       const token = localStorage.getItem("token");
         const response = await axios.post(`${url}/updateStatus/${id}`,{status},{
-            withCredentials:true
+          headers:{
+            Authorization:`Bearer ${token}`
+           }
         });
        
         // console.log(response)
