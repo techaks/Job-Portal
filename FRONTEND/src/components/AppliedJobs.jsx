@@ -9,6 +9,7 @@ const AppliedJobs = () => {
   useEffect(() => {
     const fetch = async () => {
       try {
+        const token = localStorage.getItem("token");
         const response = await axios.get(
           `${import.meta.env.VITE_appli_endpoint}/appliedjobs`,
           {headers:{
