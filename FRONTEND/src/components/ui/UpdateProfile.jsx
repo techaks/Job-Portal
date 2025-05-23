@@ -75,7 +75,7 @@ const UpdateProfile = ({ open, setOpen }) => {
             <DialogTitle>Update Your Profile</DialogTitle>
           </DialogHeader>
 
-          <form onSubmit={handleSubmit}>
+          <form >
             <div className="grid gap-2 py-2">
               <div className="grid grid-cols-4 items-center gap-2  ">
                 <p className="font-bold ">Name</p>
@@ -145,8 +145,8 @@ const UpdateProfile = ({ open, setOpen }) => {
             </div>
             <DialogFooter>
               <button
-                type="submit"
-                onClick={() => handleSubmit}
+               
+                onClick={() => handleSubmit() }
                 className={`bg-green-700  font-bold text-white text-xl w-full h-[40px] rounded-md mt-4 cursor-pointer hover:bg-green-800 ${
                   loading
                     ? " hover:cursor-not-allowed pointer-events-none bg-green-500 "
