@@ -39,8 +39,8 @@ const Job = ({job}) => {
         <div className="flex gap-2 mt-2">
           <img
             className="w-8 h-8 rounded-full"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKQWcA-aoPsU-drPn8HcbWlGrZZhua5v-08w&s"
-            alt=""
+            src={`${job?.company?.logo  ? job.company.logo : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKQWcA-aoPsU-drPn8HcbWlGrZZhua5v-08w&s" } `}
+            alt="logo"
           />
           <div>
             <p className="text-[#FF9A00] font-bold">{job?.company?.name}</p>

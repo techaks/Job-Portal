@@ -14,10 +14,10 @@ const LatestJobs = () => {
         <div className=' flex flex-col md:flex-row  m-5 flex-wrap gap-5 justify-center  '>
 
           {
-            allJobs.length < 1 && <div className='loader2 mx-auto'></div> 
+            allJobs.length < 1 && <div className=' mr-5 loader2 mx-auto'></div> 
           }
             {
-               allJobs.length >0 &&  allJobs.map((jobs)=><LatestJobCard key={jobs._id} jobs={jobs}  />)
+               allJobs.length > 0 &&  allJobs.map((jobs)=><LatestJobCard key={jobs._id} jobs={jobs}  />)
             }
 
       </div>
